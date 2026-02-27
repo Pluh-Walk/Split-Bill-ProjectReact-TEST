@@ -1,5 +1,5 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { dashboard, login, register } from '@/routes';
+import { login, register } from '@/routes';
 
 export default function Welcome() {
     const { auth } = usePage().props;
@@ -26,29 +26,18 @@ export default function Welcome() {
                     </div>
                     
                     <div className="flex items-center gap-4">
-                        {auth.user ? (
-                            <Link
-                                href={dashboard()}
-                                className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50"
-                            >
-                                Go to Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link
-                                    href={login()}
-                                    className="px-5 py-2.5 text-white/80 hover:text-white font-medium transition-colors"
-                                >
-                                    Log in
-                                </Link>
-                                <Link
-                                    href={register()}
-                                    className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50"
-                                >
-                                    Get Started
-                                </Link>
-                            </>
-                        )}
+                        <Link
+                            href={login()}
+                            className="px-5 py-2.5 text-white/80 hover:text-white font-medium transition-colors"
+                        >
+                            Log in
+                        </Link>
+                        <Link
+                            href={register()}
+                            className="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50"
+                        >
+                            Get Started
+                        </Link>
                     </div>
                 </nav>
 

@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,16 +19,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'nickname',
         'name',
-        'username',
         'email',
+        'username',
         'password',
         'user_type',
-        'is_guest',
-        'invitation_code',
     ];
 
     /**
@@ -51,16 +46,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'two_factor_confirmed_at' => 'datetime',
-        'is_guest' => 'boolean',
     ];
-
-    public function hostedBills()
-    {
-        return $this->hasMany(Bill::class, 'host_id');
-    }
-
-    public function participations()
-    {
-        return $this->hasMany(BillUser::class);
-    }
 }
